@@ -1,0 +1,9 @@
+line-length = 120
+
+[lint]
+fixable = ["ALL"]
+
+[format]
+quote-style = "single"
+indent-style = "tab"
+docstring-code-format = true
