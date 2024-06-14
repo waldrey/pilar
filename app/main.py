@@ -5,12 +5,14 @@ from dotenv import load_dotenv
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse, RedirectResponse
 from app.controllers.vowel_count import vowel_count
+from app.controllers.words_sort import words_sort
 from app.config.middlewares import middleware_validate_content_type
 
 load_dotenv()
 
 app = FastAPI(title=os.getenv('APP_NAME', 'Pilar API'))
 app.include_router(vowel_count.router)
+app.include_router(words_sort.router)
 
 
 @app.middleware('http')
