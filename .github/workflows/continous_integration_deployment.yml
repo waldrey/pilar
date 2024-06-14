@@ -42,11 +42,6 @@ jobs:
       - run: poetry install --no-interaction --no-root
         if: steps.cache-deps.outputs.cache-hit != 'true'
 
-      - name: Set PYTHONPATH
-        run: |
-          export PYTHONPATH="${PYTHONPATH}:$(pwd)"
-          echo "PYTHONPATH set to $PYTHONPATH"
-
       - name: Code Quality [LINT]
         uses: chartboost/ruff-action@v1
 
@@ -59,3 +54,10 @@ jobs:
           custom-pytest: 'poetry run pytest'
           click-to-expand: true
           report-title: 'Test Report'
+  deploy:
+    name: Pipeline Deployment
+    runs-on: 'ubuntu-latest'
+    needs: pipeline_development
+
+    steps:
+     # Implementing AWS Deploy using ECS
