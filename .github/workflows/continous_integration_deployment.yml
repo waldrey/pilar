@@ -18,6 +18,9 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Install dependencies [PYTEST]
+        run: pip install pytest pytest-md pytest-emoji
+
       - name: Install Poetry
         uses: snok/install-poetry@v1
 
