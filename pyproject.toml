@@ -13,6 +13,8 @@ python-dotenv = "^1.0.1"
 ruff = "^0.4.8"
 pydantic = "^2.7.4"
 coverage = "^7.5.3"
+pytest-md = "^0.2.0"
+pytest-emoji = "^0.2.0"
 
 
 [tool.poetry.group.dev.dependencies]
