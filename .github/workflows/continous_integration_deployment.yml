@@ -18,11 +18,29 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install dependencies [PYTEST]
-        run: pip install pytest pytest-md pytest-emoji
+      - name: Cache Install Poetry
+        uses: actions/cache@v2
+        with:
+          path: ~/.local
+          key: poetry-1.8.3
+
 
       - name: Install Poetry
         uses: snok/install-poetry@v1
+        with:
+          version: 1.8.3
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+
+      - name: Cache Dependencies Poentry
+        id: cache-deps
+        uses: actions/cache@v2
+        with:
+          path: .venv
+          key: pydeps-${{ hashFiles('**/poetry.lock') }}
+
+      - run: poetry install --no-interaction --no-root
+        if: steps.cache-deps.outputs.cache-hit != 'true'
 
       - name: Code Quality [LINT]
         uses: chartboost/ruff-action@v1
