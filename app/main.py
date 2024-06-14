@@ -15,7 +15,7 @@ app.include_router(vowel_count.router)
 
 @app.middleware('http')
 async def middleware_wrapper(request: Request, call_next):
-	if request.url.path not in ['/', '/docs', '/openapi.json']:
+	if request.method not in ['GET']:
 		return await middleware_validate_content_type(request, call_next)
 	else:
 		response = await call_next(request)
