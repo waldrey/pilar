@@ -51,4 +51,4 @@ jobs:
         uses: chartboost/ruff-action@v1
 
       - name: Code Quality [PYTEST]
-        run: poentry run pytest --emoji
+        run: poetry run pytest --emoji
