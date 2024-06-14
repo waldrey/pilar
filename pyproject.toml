@@ -11,7 +11,11 @@ python = "^3.12"
 fastapi = "^0.111.0"
 python-dotenv = "^1.0.1"
 ruff = "^0.4.8"
+pydantic = "^2.7.4"
 
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.2"
 
 [build-system]
 requires = ["poetry-core"]
