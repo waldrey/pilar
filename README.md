@@ -9,6 +9,7 @@ Se preferir pode utilizar versão hospedada:
 [http://pilar.waldrey.com/](http://pilar.waldrey.com/)
 
 ```shell
+cp .env .env.example
 docker build -t pilar_python .
 docker run -d --name pilar_words -p 8080:80 pilar_python
 ```
@@ -21,10 +22,11 @@ Primeiramente construi uma **branch rule** para conseguimos realizar o deploy/me
 O lint é obrigatório a passar sem falha e todos os testes precisam passarem. Caso ainda esteja em uma branch diferente de _main_ o deploy não é ativado, somente quando é realizado commit/merge para **main**. Na seção abaixo falamos mais sobre infraestrutura e contém mais detalhes de como funciona passo a passo para realização do deploy na AWS.
 
 ## Infraestrutura
-Explicando um pouco sobre a infraestrutura construida na AWS para realização do deploy. Ideia foi utilizar **Amazon ECS** como servidor para aplicação já que AWS faz a gestão dos pods/nodes do kubernetes para gente com facilidade já que não precisamos montar todo nosso **yaml** configurando memória, cpu, probes e estrátegia de deploy.
+Explicando um pouco sobre a infraestrutura construída na AWS para realização do deploy. A ideia foi utilizar **Amazon ECS** como servidor para a aplicação, já que a AWS faz a gestão dos pods/nodes do Kubernetes para nós com facilidade, sem precisarmos configurar todo nosso **yaml** para memória, CPU, probes e estratégia de deploy.
 
-Abaixo tem um diagrama da infraestrutura construida, resumidamente monstrando o caminho que o usuário final realiza para conseguir acessar nossa API. Também caminho de como é realizado o deploy da aplicação assim que uma _Pull Request_ é mergeado para branch **main**.
-Esse projeto utilizamos as seguintes ferramentas da AWS:
+Abaixo temos um diagrama da infraestrutura construída, resumidamente mostrando o caminho que o usuário final realiza para conseguir acessar nossa API. Também o caminho de como é realizado o deploy da aplicação assim que uma _Pull Request_ é mergeada para a branch **main**.
+
+Neste projeto, utilizamos as seguintes ferramentas da AWS:
 
 1. **Amazon ECR** (Utilizamos para salvar a imagem docker com novo código da aplicação);
 2. **Amazon ECS/Fargate** (Criamos um cluster simples .5CPU & 1GB Memória para receber os serviços fargate onde está nossa aplicação rodando);
