@@ -5,7 +5,16 @@ from app.domains.words.words_service import WordsService
 router = APIRouter()
 
 
-@router.post(path='/vowel_count', tags=['Words'])
+@router.post(
+	path='/vowel_count',
+	tags=['Words'],
+	responses={
+		200: {
+			'description': 'Successful response',
+			'content': {'application/json': {'example': {'batman': 2, 'robin': 2, 'coringa': 3}}},
+		}
+	},
+)
 def vowel_count(body: VowelCountSchema):
 	"""
 	Vowel Count endpoint.
