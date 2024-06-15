@@ -5,7 +5,16 @@ from app.domains.words.words_service import WordsService
 router = APIRouter()
 
 
-@router.post(path='/sort', tags=['Words'])
+@router.post(
+	path='/sort',
+	tags=['Words'],
+	responses={
+		200: {
+			'description': 'Successful response',
+			'content': {'application/json': {'example': ['batman', 'coringa', 'robin']}},
+		}
+	},
+)
 def sort(body: WordsSortSchema):
 	"""
 	Sort endpoint.
